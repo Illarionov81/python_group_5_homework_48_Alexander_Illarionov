@@ -46,31 +46,31 @@ def product_create_view(request, *args, **kwargs):
             return render(request, 'product_create.html', context={'form': form})
     else:
         return HttpResponseNotAllowed(permitted_methods=['GET', 'POST'])
-#
-#
-# def task_update_view(request, pk):
-#     task = get_object_or_404(To_Do_list, pk=pk)
-#     if request.method == "GET":
-#         form = TaskForm(data={
-#             'status': task.status,
-#             'summary': task.summary,
-#             'description': task.description,
-#             'completion_time': task.completion_time
-#         })
-#         return render(request, 'task_update.html', context={'form': form, 'task': task})
-#     elif request.method == 'POST':
-#         form = TaskForm(data=request.POST)
-#         if form.is_valid():
-#             task.status = form.cleaned_data['status']
-#             task.summary = form.cleaned_data['summary']
-#             task.description = form.cleaned_data['description']
-#             task.completion_time = form.cleaned_data['completion_time']
-#             task.save()
-#             return redirect('task_view', pk=task.pk)
-#         else:
-#             return render(request, 'task_update.html', context={'task': task, 'form': form})
-#     else:
-#         return HttpResponseNotAllowed(permitted_methods=['GET', 'POST'])
-#
-#
-#
+
+
+def product_update_view(request, pk):
+    product = get_object_or_404(Product, pk=pk)
+    if request.method == "GET":
+        form = ProductForm(data={
+            'name': product.name,
+            'category': product.category,
+            'description': product.description,
+            'amount': product.amount,
+            'price': product.price
+        })
+        return render(request, 'product_update.html', context={'form': form, 'product': product})
+    elif request.method == 'POST':
+        form = ProductForm(data=request.POST)
+        if form.is_valid():
+            product.name = form.cleaned_data['name']
+            product.category = form.cleaned_data['category']
+            product.description = form.cleaned_data['description']
+            product.amount = form.cleaned_data['amount']
+            product.price = form.cleaned_data['price']
+            product.save()
+            return redirect('product_view', pk=product.pk)
+        else:
+            return render(request, 'product_update.html', context={'product': product, 'form': form})
+    else:
+        return HttpResponseNotAllowed(permitted_methods=['GET', 'POST'])
+
