@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Delete Product{% endblock %}
+
+{% block menu %}
+    <li class="nav-item px-3">
+        <a class="navbar-brand"  href="{% url 'product_view' product.pk %}" >Просмотр позиции</a>
+    </li>
+{% endblock %}
+
+{% block contant %}
+    <div class="coL col-lg-12 mt-5">
+        <h1 class="pt-4">Вы действительно хотите удалить товар из базы: # <b class="text-primary">{{ product.pk }}</b> ?</h1>
+        <p><h3>Product:</h3> {{ product.name }}. <h3>Остаток на складе:</h3> {{ product.amount }}.</p>
+    </div>
+    <div class="row">
+        <form method="POST" action="{% url "product_delete" product.pk %}" class="text-center">
+            {% csrf_token %}
+        <div class="coL col-lg-3 ml-5 mt-1">
+            <a href="{% url 'product_delete' product.pk %}" >
+                <button type="submit"  class="btn btn-primary">Delete</button>
+            </a>
+        </div>
+        </form>
+        <div class="coL col-lg-3  mt-1">
+            <a href="{% url 'product_view' product.pk  %}" >
+                <button type="submit"  class="btn btn-primary">Отмена</button>
+            </a>
+        </div>
+    </div>
+
+{% endblock %}

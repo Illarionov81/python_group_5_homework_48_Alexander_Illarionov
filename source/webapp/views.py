@@ -16,14 +16,14 @@ def product_view(request, pk):
     context = {'product': product}
     return render(request, "product.html", context)
 
-#
-# def task_delete_view(request, pk):
-#     task = get_object_or_404(To_Do_list, pk=pk)
-#     if request.method == 'GET':
-#         return render(request, 'product_delete.html', context={'task': task})
-#     elif request.method == 'POST':
-#         task.delete()
-#         return redirect("task_list")
+
+def product_delete_view(request, pk):
+    product = get_object_or_404(Product, pk=pk)
+    if request.method == 'GET':
+        return render(request, 'product_delete.html', context={'product': product})
+    elif request.method == 'POST':
+        product.delete()
+        return redirect("index")
 #
 #
 # def task_create_view(request, *args, **kwargs):
