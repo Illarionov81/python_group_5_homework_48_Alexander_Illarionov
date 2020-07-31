@@ -24,32 +24,28 @@ def product_delete_view(request, pk):
     elif request.method == 'POST':
         product.delete()
         return redirect("index")
-#
-#
-# def task_create_view(request, *args, **kwargs):
-#     if request.method == "GET":
-#         return render(request, 'task_create.html', context={
-#             'form': TaskForm()
-#         })
-#     elif request.method == 'POST':
-#         form = TaskForm(data=request.POST)
-#         if form.is_valid():
-#             summary = form.cleaned_data['summary']
-#             description = form.cleaned_data['description']
-#             status = form.cleaned_data['status']
-#             completion_time = form.cleaned_data['completion_time']
-#             if completion_time:
-#                 task = To_Do_list.objects.create(summary=summary, description=description,
-#                                                  completion_time=completion_time,
-#                                                  status=status)
-#             else:
-#                 task = To_Do_list.objects.create(summary=summary, description=description,
-#                                                  status=status)
-#             return redirect('task_view', pk=task.pk)
-#         else:
-#             return render(request, 'task_create.html', context={'form': form})
-#     else:
-#         return HttpResponseNotAllowed(permitted_methods=['GET', 'POST'])
+
+
+def product_create_view(request, *args, **kwargs):
+    if request.method == "GET":
+        return render(request, 'product_create.html', context={
+            'form': ProductForm()
+        })
+    elif request.method == 'POST':
+        form = ProductForm(data=request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            description = form.cleaned_data['description']
+            category = form.cleaned_data['category']
+            amount = form.cleaned_data['amount']
+            price = form.cleaned_data['price']
+            product = Product.objects.create(name=name, description=description,
+                                             category=category, amount=amount, price=price)
+            return redirect('product_view', pk=product.pk)
+        else:
+            return render(request, 'product_create.html', context={'form': form})
+    else:
+        return HttpResponseNotAllowed(permitted_methods=['GET', 'POST'])
 #
 #
 # def task_update_view(request, pk):
