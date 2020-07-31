@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}View tasks{% endblock %}
+
+{% block contant %}
+    {% csrf_token %}
+    <h1 class="pt-4"><b>Product :</b></h1>
+    <hr>
+    {% for product in products %}
+        <div class="row">
+            <div class="col col-lg-6">
+{#                <h3><a href="{% url 'product_view' product.pk %}">№{{ product.pk }}. Category: <b>{{ product.get_category_display}}</b></a> </h3>#}
+                    <p>Наименование: {{ product.name }} </p>
+                    <p>Остаток на складе: {{ product.amount }}</p>
+                    <p>Цена за единицу: {{ product.price }}</p>
+            </div>
+{#            <div class="coL col-lg-1 mt-5">#}
+{#                <a href="{% url 'product_update' product.pk %}" ><button type="submit"  class="btn btn-primary">Update</button></a>#}
+{#            </div>#}
+{#            <div class="coL col-lg-1 mt-5">#}
+{#                <a href="{% url 'product_delete' product.pk %}" ><button type="submit"  class="btn btn-primary">Delete</button></a>#}
+{#            </div>#}
+        </div>
+        <hr>
+    {% endfor %}
+    <hr>
+    </form>
+{% endblock %}

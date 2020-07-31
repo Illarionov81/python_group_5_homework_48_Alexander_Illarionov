@@ -10,6 +10,7 @@ CATEGORY_CHOICES = (
     ('appliances', 'Бытовая техника'),
 )
 
+
 class Product(models.Model):
     name = models.CharField(max_length=100, verbose_name='Название')
     description = models.TextField(max_length=2000, null=True, blank=True, verbose_name='Описание')
