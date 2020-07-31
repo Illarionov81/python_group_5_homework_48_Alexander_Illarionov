@@ -11,11 +11,11 @@ def index_view(request):
     })
 
 
-# def task_view(request, pk):
-#     task = get_object_or_404(To_Do_list, pk=pk)
-#     context = {'task': task}
-#     return render(request, "task.html", context)
-#
+def product_view(request, pk):
+    product = get_object_or_404(Product, pk=pk)
+    context = {'product': product}
+    return render(request, "product.html", context)
+
 #
 # def task_delete_view(request, pk):
 #     task = get_object_or_404(To_Do_list, pk=pk)
