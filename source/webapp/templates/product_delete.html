@@ -18,13 +18,13 @@
             {% csrf_token %}
         <div class="coL col-lg-3 ml-5 mt-1">
             <a href="{% url 'product_delete' product.pk %}" >
-                <button type="submit"  class="btn btn-primary">Delete</button>
+                <button type="submit"  class="btn btn-danger">Delete</button>
             </a>
         </div>
         </form>
         <div class="coL col-lg-3  mt-1">
             <a href="{% url 'product_view' product.pk  %}" >
-                <button type="submit"  class="btn btn-primary">Отмена</button>
+                <button type="submit"  class="btn btn-success">Отмена</button>
             </a>
         </div>
     </div>

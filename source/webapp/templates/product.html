@@ -12,18 +12,15 @@
 {% endblock %}
 
 {% block contant %}
-<div class="col col-lg-6">
-    <h1 class="pt-4"><b>Product: </b></h1>
-    <h3>№{{ product.pk }}. Category: <b class="text-primary">{{ product.get_category_display }}</b></h3>
-    <p>Наименование: {{ product.name }} </p>
-    <p>Description:   </p>
-    <pre>
-        {{ product.description |linebreaks }}
-    </pre>
-    <p>Остаток на складе: {{ product.amount }}</p>
-    <p>Цена за единицу: {{ product.price }}</p>
-
-</div>
+    <div class="row">
+        <div class="col col-lg-10">
+            <h1 class="pt-4"><b>Product: </b></h1>
+            <h3>№{{ product.pk }}. Category: <b class="text-warning">{{ product.get_category_display }}</b></h3>
+            <p>Наименование: <b>{{ product.name }} </b></p>
+            <p>Description: <b>{{ product.description |linebreaksbr }}</b></p>
+            <p>Остаток на складе: <b>{{ product.amount }}</b></p>
+            <p>Цена за единицу: <b>{{ product.price }}</b></p>
+        </div>
     <hr>
 {% endblock %}
 

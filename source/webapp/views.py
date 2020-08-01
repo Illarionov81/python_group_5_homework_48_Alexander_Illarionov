@@ -1,14 +1,26 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from webapp.models import Product, CATEGORY_CHOICES
-from webapp.forms import ProductForm
+from webapp.models import Product
+from webapp.forms import ProductForm, FindProductForm
 from django.http import HttpResponseNotAllowed
 
 
-def index_view(request):
-    data = Product.objects.all()
-    return render(request, 'index.html', context={
-        'products': data
-    })
+def index_view(request, *args, **kwargs):
+    find_form = FindProductForm(data=request.GET)
+    if find_form.is_valid():
+        name = find_form.cleaned_data['name']
+        data = Product.objects.filter(name=name,)
+        return render(request, 'index.html', context={
+            'products': data,
+            'form': ProductForm(),
+            'find_form': find_form
+        })
+    else:
+        data = Product.objects.filter(amount__gte=1).order_by('category', 'name')
+        return render(request, 'index.html', context={
+            'form': ProductForm(),
+            'find_form': FindProductForm(),
+            'products': data
+        })
 
 
 def product_view(request, pk):
